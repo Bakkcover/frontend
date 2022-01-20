@@ -1,1 +1,1 @@
-A desktop-based user interface for Bakkcover made with React.
+A desktop-based user interface made with React.
