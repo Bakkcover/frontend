@@ -1,2 +1,1 @@
-# frontend
-Desktop-based user interface for Bakkcover.
+A desktop-based user interface for Bakkcover.
