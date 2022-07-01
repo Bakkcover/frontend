@@ -1,0 +1,19 @@
+<h1>Auth Component</h1>
+
+<div *ngIf="isShowingLoginComponent">
+  <app-login></app-login>
+  <button type="button" (click)="switchToSignupComponent()">
+    New here? Sign up here!
+  </button>
+</div>
+
+<div *ngIf="!isShowingLoginComponent">
+  <app-signup></app-signup>
+  <button type="button" (click)="switchToLoginComponent()">
+    Already have an account? Log in here.
+  </button>
+</div>
+
+<div *ngIf="isLoggedIn()">
+  <button type="button" (click)="logout()">Log Out</button>
+</div>
