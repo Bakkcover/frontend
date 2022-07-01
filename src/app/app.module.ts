@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {AuthModule} from "./modules/auth/auth.module";
 import { HomeComponent } from './components/home/home.component';
 import { LoggedInGuard } from './loggedin.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

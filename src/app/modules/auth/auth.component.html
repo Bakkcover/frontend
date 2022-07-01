@@ -1,17 +1,18 @@
-<h1>Auth Component</h1>
 
 <div *ngIf="isShowingLoginComponent">
   <app-login></app-login>
-  <button type="button" (click)="switchToSignupComponent()">
-    New here? Sign up here!
-  </button>
+
+  <p class="mt-8 text-xs font-light text-center text-gray-700"> Don't have an account?
+    <a (click)="switchToSignupComponent()" class="font-medium text-purple-600 hover:underline">Sign up</a>
+  </p>
 </div>
 
 <div *ngIf="!isShowingLoginComponent">
-  <app-signup></app-signup>
-  <button type="button" (click)="switchToLoginComponent()">
-    Already have an account? Log in here.
-  </button>
+    <app-signup></app-signup>
+
+    <p class="text-xs font-light text-center text-gray-700"> Already have an account?
+      <a (click)="switchToLoginComponent()" class="font-medium text-purple-600 hover:underline">Log in</a>
+    </p>
 </div>
 
 <div *ngIf="isLoggedIn()">

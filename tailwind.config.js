@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'work-sans': ['"Work Sans"', 'sans-serif'],
+        'sanchez': ['Sanchez', 'serif']
+      }
+    }
   },
   plugins: [],
 }
