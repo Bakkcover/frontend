@@ -10,6 +10,9 @@ import {createPopper} from "@popperjs/core";
 export class NavbarComponent implements AfterViewInit {
   public showDropdownPopover:boolean = false;
 
+  public username?:string;
+  public email?:string;
+
   @ViewChild("btnDropdownRef", { static: false })
   btnDropdownRef!: ElementRef;
   @ViewChild("popoverDropdownRef", { static: false })

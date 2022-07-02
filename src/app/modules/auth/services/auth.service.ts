@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as moment from 'moment';
 import {Observable} from "rxjs";
+import jwt_decode, {JwtPayload} from "jwt-decode";
 
 import {environment} from "../../../../environments/environment";
 import {LoggingService} from "../../../services/logging/logging.service";
@@ -71,6 +72,22 @@ export class AuthService {
     }
 
     return moment().isBefore(this.getExpiration());
+  }
+
+  public getUsername():string {
+    if (this.isLoggedIn()) {
+      return jwt_decode<any>(localStorage.getItem('id_token')!)['cognito:username'];
+    }
+
+    return "NO USERNAME FOUND";
+  }
+
+  public getEmail():string {
+    if (this.isLoggedIn()) {
+      return jwt_decode<any>(localStorage.getItem('id_token')!)['email'];
+    }
+
+    return "NO EMAIL FOUND";
   }
 
   private getExpiration(): moment.Moment {
