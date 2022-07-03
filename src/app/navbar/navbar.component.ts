@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from "../../modules/auth/services/auth.service";
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AuthService} from "../shared/auth/services/auth.service";
 import {createPopper} from "@popperjs/core";
 
 @Component({
@@ -36,12 +36,7 @@ export class NavbarComponent implements AfterViewInit {
 
   toggleDropdown(event:any) {
     event.preventDefault();
-
-    if (this.showDropdownPopover) {
-      this.showDropdownPopover = false;
-    } else {
-      this.showDropdownPopover = true;
-    }
+    this.showDropdownPopover = !this.showDropdownPopover;
   }
 
   isLoggedIn(): boolean {

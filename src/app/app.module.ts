@@ -3,14 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AuthModule} from "./modules/auth/auth.module";
-import { MyAccountComponent } from './components/my-account/my-account.component';
+import {AuthModule} from "./shared/auth/auth.module";
+import { MyAccountComponent } from './my-account/my-account.component';
 import { LoggedInGuard } from './loggedin.guard';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HowItWorksComponent } from './components/how-it-works/how-it-works.component';
-import { LibraryComponent } from './components/library/library.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { LibraryComponent } from './library/library.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { BookListItemComponent } from './library/book-list-item/book-list-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     NavbarComponent,
     HowItWorksComponent,
     LibraryComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    BookListItemComponent
   ],
   imports: [
     BrowserModule,
