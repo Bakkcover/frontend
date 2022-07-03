@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as moment from 'moment';
 import {Observable} from "rxjs";
-import jwt_decode, {JwtPayload} from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 import {environment} from "../../../../environments/environment";
 import {LoggingService} from "../../../services/logging/logging.service";
