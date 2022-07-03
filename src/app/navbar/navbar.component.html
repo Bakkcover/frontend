@@ -1,0 +1,76 @@
+<nav class="bg-white border-gray-200 px-2 sm:px-4 my-5 mx-10 py-2.5 rounded bg-white">
+  <div class="container flex flex-wrap justify-between items-center">
+    <a [routerLink]="['/howitworks']" class="flex items-center">
+      <span class="self-center text-2xl font-work-sans font-bold whitespace-nowrap">
+        BAKKCOVER
+      </span>
+    </a>
+
+    <div class="flex space-x-20 items-center">
+      <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+        <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+          <li>
+            <a [routerLink]="['/howitworks']"
+               routerLinkActive="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+               class="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-100 hover:bg-gray-50
+               md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+              How It Works</a>
+          </li>
+          <li>
+            <a [routerLink]="['/library']"
+               routerLinkActive="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+               class="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-100 hover:bg-gray-50
+               md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+              Library</a>
+          </li>
+          <li>
+            <a [routerLink]="['/contactus']"
+               routerLinkActive="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+               class="block py-2 pr-4 pl-3 text-gray-400 border-b border-gray-100 hover:bg-gray-50
+               md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+              Contact Us</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center order-last">
+        <ng-container *ngIf="isLoggedIn()">
+          <div>
+            <button type="button" id="user-menu-button" #btnDropdownRef
+                    (click)="toggleDropdown($event)"
+                    class="dropdown-toggle flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 focus:ring-gray-600">
+              <img class="w-8 h-8 rounded-full" src="../../assets/images/template_user_icon.png" alt="user photo">
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="dropdown" #popoverDropdownRef
+              class="dropdown-menu z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+              [ngClass]="showDropdownPopover ? 'block' : 'hidden'">
+              <div class="py-3 px-4">
+                <span class="block text-sm text-gray-900">Nonsense</span>
+                <span class="block text-sm font-medium text-gray-500 truncate">fakeemail@example.com</span>
+              </div>
+              <ul class="py-1" aria-labelledby="dropdown">
+                <li>
+                  <a href="/myaccount"
+                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">My Account</a>
+                </li>
+                <li>
+                  <a (click)="logout()"
+                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!isLoggedIn()">
+          <button class="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">
+            <a class="text-white font-bold" href="/auth">Login</a>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</nav>
