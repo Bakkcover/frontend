@@ -5,8 +5,8 @@ import {Observable} from "rxjs";
 import jwt_decode from "jwt-decode";
 
 import {environment} from "../../../../environments/environment";
-import {LoggingService} from "../../../services/logging/logging.service";
-import {LoggingSeverity} from "../../../services/logging/loggingSeverity";
+import {LoggingService} from "../../services/logging/logging.service";
+import {LoggingSeverity} from "../../services/logging/loggingSeverity";
 
 @Injectable({
   providedIn: 'root'

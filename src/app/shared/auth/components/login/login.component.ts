@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {LoggingSeverity} from "../../../../services/logging/loggingSeverity";
-import {LoggingService} from "../../../../services/logging/logging.service";
+import {LoggingSeverity} from "../../../services/logging/loggingSeverity";
+import {LoggingService} from "../../../services/logging/logging.service";
 
 @Component({
   selector: 'app-login',
