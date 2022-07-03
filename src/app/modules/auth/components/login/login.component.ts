@@ -34,7 +34,7 @@ export class LoginComponent {
         next: (res) => this.authService.setSession(res),
         complete: () => {
           this.log('User successfully signed in!', LoggingSeverity.SUCCESS);
-          this.redirectToHome();
+          this.redirectToMyAccount();
         },
         error: err => {
           this.log(`${JSON.stringify(err)}`, LoggingSeverity.ERROR);
@@ -43,8 +43,8 @@ export class LoginComponent {
       });
   }
 
-  private redirectToHome(): void {
-    this.router.navigateByUrl("/home");
+  private redirectToMyAccount(): void {
+    this.router.navigateByUrl("/myaccount");
   }
 
   private log(m:string, severity:LoggingSeverity) {
