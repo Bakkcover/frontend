@@ -74,22 +74,6 @@ export class AuthService {
     return moment().isBefore(this.getExpiration());
   }
 
-  public getUsername():string {
-    if (this.isLoggedIn()) {
-      return jwt_decode<any>(localStorage.getItem('id_token')!)['cognito:username'];
-    }
-
-    return "NO USERNAME FOUND";
-  }
-
-  public getEmail():string {
-    if (this.isLoggedIn()) {
-      return jwt_decode<any>(localStorage.getItem('id_token')!)['email'];
-    }
-
-    return "NO EMAIL FOUND";
-  }
-
   private getExpiration(): moment.Moment {
     const expiration:string = localStorage.getItem('expires_at') ?? "";
     const expiresAt = JSON.parse(expiration);

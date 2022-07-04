@@ -1,6 +1,6 @@
 <nav class="bg-white border-gray-200 px-2 sm:px-4 my-5 mx-10 py-2.5 rounded bg-white">
   <div class="container flex flex-wrap justify-between items-center">
-    <a [routerLink]="['/howitworks']" class="flex items-center">
+    <a [routerLink]="['/library']" class="flex items-center">
       <span class="self-center text-2xl font-work-sans font-bold whitespace-nowrap">
         BAKKCOVER
       </span>
@@ -48,8 +48,8 @@
               class="dropdown-menu z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
               [ngClass]="showDropdownPopover ? 'block' : 'hidden'">
               <div class="py-3 px-4">
-                <span class="block text-sm text-gray-900">Nonsense</span>
-                <span class="block text-sm font-medium text-gray-500 truncate">fakeemail@example.com</span>
+                <span class="block text-sm text-gray-900">{{getUsername()}}</span>
+                <span class="block text-sm font-medium text-gray-500 truncate">{{getEmail()}}</span>
               </div>
               <ul class="py-1" aria-labelledby="dropdown">
                 <li>
