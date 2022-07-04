@@ -75,6 +75,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   logout(): void {
+    this.showDropdownPopover = !this.showDropdownPopover;
     this.authService.logout();
     this.redirectToAuth();
   }
