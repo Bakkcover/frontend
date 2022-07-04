@@ -12,6 +12,8 @@ import { LibraryComponent } from './library/library.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {LibraryModule} from "./library/library.module";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "./shared/auth/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {LibraryModule} from "./library/library.module";
     AuthModule,
     LibraryModule
   ],
-  providers: [LoggedInGuard],
+  providers: [LoggedInGuard, {
+    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
