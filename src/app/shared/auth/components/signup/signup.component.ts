@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
-import {LoggingSeverity} from "../../../services/logging/loggingSeverity";
-import {LoggingService} from "../../../services/logging/logging.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -13,14 +12,14 @@ export class SignupComponent implements OnInit {
   public errorMessage?:string;
 
   form = new FormGroup({
-    "username": new FormControl("test", Validators.required),
-    "email": new FormControl("test@example.com", Validators.required),
-    "password": new FormControl("Qwerty1@34", Validators.required)
+    "username": new FormControl("", Validators.required),
+    "email": new FormControl("", Validators.required),
+    "password": new FormControl("", Validators.required)
   })
 
   constructor(
     private authService:AuthService,
-    private loggingService:LoggingService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,31 +33,26 @@ export class SignupComponent implements OnInit {
     this.authService.signup(username, email, password)
       .subscribe(
         {
-          complete: () => {
-            this.log('User successfully signed up!', LoggingSeverity.SUCCESS);
-          },
+          complete: () => this.loginAfterSuccessfulSignup(username, password),
           error: err => {
-            this.log(`${JSON.stringify(err)}`, LoggingSeverity.ERROR);
             this.errorMessage = err.error.errorMessage;
           }
         });
   }
 
-  private log(m:string, severity:LoggingSeverity) {
-    let message:string = `SignupService: ${m}`;
+  private loginAfterSuccessfulSignup(username:string, password:string): void {
+    this.authService.login(username, password)
+      .subscribe({
+        complete: () => {
+          this.redirectToMyAccount();
+        },
+        error: err => {
+          this.errorMessage = err.error.errorMessage;
+        }
+      });
+  }
 
-    switch (severity) {
-      case LoggingSeverity.SUCCESS:
-        this.loggingService.logSuccess(message);
-        break;
-      case LoggingSeverity.ERROR:
-        this.loggingService.logError(message);
-        break;
-      case LoggingSeverity.INFO:
-        this.loggingService.logInfo(message);
-        break;
-      default:
-        this.loggingService.logInfo(message);
-    }
+  private redirectToMyAccount(): void {
+    this.router.navigateByUrl("/myaccount");
   }
 }
