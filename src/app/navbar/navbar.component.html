@@ -33,8 +33,16 @@
         </ul>
       </div>
 
-      <div class="flex items-center order-last">
+      <div class="flex items-center space-x-5 order-last">
         <ng-container *ngIf="isLoggedIn()">
+          <div>
+            <button class="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded">
+              <a class="text-white font-bold" href="/addbook">
+                Add a book
+              </a>
+            </button>
+          </div>
+
           <div>
             <button type="button" id="user-menu-button" #btnDropdownRef
                     (click)="toggleDropdown($event)"
