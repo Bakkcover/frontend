@@ -11,6 +11,7 @@ import {UserDetailsService} from "../shared/services/user-details/user-details.s
 export class MyAccountComponent implements OnInit {
 
   user?:User;
+  errorMessage?:string;
 
   constructor(
     private authService: AuthService,
@@ -24,15 +25,7 @@ export class MyAccountComponent implements OnInit {
   getLoggedInUserDetails(): void {
     this.userDetailsService.getLoggedInUserDetails()
       .subscribe({
-        next: res => {
-          this.user = res.user;
-          },
-        complete: () => {
-          console.log('Fetched user details');
-        },
-        error: err => {
-          console.log(err);
-        }
+        next: user => this.user = user
       });
   }
 

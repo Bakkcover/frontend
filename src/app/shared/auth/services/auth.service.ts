@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as moment from 'moment';
-import {Observable} from "rxjs";
-import jwt_decode from "jwt-decode";
+import {Observable, shareReplay, tap} from "rxjs";
 
 import {environment} from "../../../../environments/environment";
 import {LoggingService} from "../../services/logging/logging.service";
@@ -26,15 +25,25 @@ export class AuthService {
   ) { }
 
   public login(username:string, password:string): Observable<Object> {
-    // implement login logic here
+    let SUCCESS_MESSAGE = "User successfully signed in!";
+
     let httpBody = {
       username,
       password
     }
 
-    return this.http.post(
-      this.LOGIN_ENDPOINT, httpBody, this.HTTP_OPTIONS
-    )
+    return this.http.post(this.LOGIN_ENDPOINT, httpBody, this.HTTP_OPTIONS)
+        .pipe(
+          tap({
+            next: res => this.setSession(res),
+            complete: () => this.loggingService.log(SUCCESS_MESSAGE, LoggingSeverity.SUCCESS),
+            error: err => {
+              let errorMessage:string = err.error.errorMessage;
+              this.loggingService.log(errorMessage, LoggingSeverity.ERROR);
+            }
+          }),
+          shareReplay()
+        );
   }
 
   public logout(): void {
@@ -44,20 +53,29 @@ export class AuthService {
   }
 
   public signup(username:string, email:string, password:string): Observable<Object> {
-    // implement signup logic here
+    let SUCCESS_MESSAGE = "User successfully signed up!";
+
     let httpBody = {
       username,
       email,
       password
     }
 
-    return this.http.post(
-      this.SIGNUP_ENDPOINT, httpBody, this.HTTP_OPTIONS
-    )
+    return this.http.post(this.SIGNUP_ENDPOINT, httpBody, this.HTTP_OPTIONS)
+      .pipe(
+        tap({
+          complete: () => this.loggingService.log(SUCCESS_MESSAGE, LoggingSeverity.SUCCESS),
+          error: err => {
+            let errorMessage:string = err.error.errorMessage;
+            this.loggingService.log(errorMessage, LoggingSeverity.ERROR);
+          }
+        }),
+        shareReplay()
+      );
   }
 
-  public setSession(authResult:any): void {
-    this.log("Saving id_token, access_token, expires_at...", LoggingSeverity.INFO);
+  private setSession(authResult:any): void {
+    this.loggingService.log("Saving id_token, access_token, expires_at...", LoggingSeverity.INFO);
 
     const expiresAt = moment().add(authResult.expiresIn,'second');
 
@@ -79,23 +97,5 @@ export class AuthService {
     const expiresAt = JSON.parse(expiration);
 
     return moment(expiresAt);
-  }
-
-  private log(m:string, severity:LoggingSeverity) {
-    let message:string = `AuthService: ${m}`;
-
-    switch (severity) {
-      case LoggingSeverity.SUCCESS:
-        this.loggingService.logSuccess(message);
-        break;
-      case LoggingSeverity.ERROR:
-        this.loggingService.logError(message);
-        break;
-      case LoggingSeverity.INFO:
-        this.loggingService.logInfo(message);
-        break;
-      default:
-        this.loggingService.logInfo(message);
-    }
   }
 }

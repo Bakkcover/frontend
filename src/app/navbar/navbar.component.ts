@@ -4,6 +4,7 @@ import {createPopper} from "@popperjs/core";
 import {Router} from "@angular/router";
 import {User} from "../shared/models/User";
 import {UserDetailsService} from "../shared/services/user-details/user-details.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ import {UserDetailsService} from "../shared/services/user-details/user-details.s
 export class NavbarComponent implements OnInit, AfterViewInit {
   public showDropdownPopover:boolean = false;
 
-  user?: User;
+  user$?:Observable<User>;
 
   @ViewChild("btnDropdownRef", { static: false })
   btnDropdownRef!: ElementRef;
@@ -29,7 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.getLoggedInUserDetails();
+    this.user$ = this.userDetailsService.getLoggedInUserDetails();
   }
 
   ngAfterViewInit() {
@@ -45,29 +46,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleDropdown(event:any) {
     event.preventDefault();
     this.showDropdownPopover = !this.showDropdownPopover;
-  }
-
-  getLoggedInUserDetails(): void {
-    this.userDetailsService.getLoggedInUserDetails()
-      .subscribe({
-        next: res => {
-          this.user = res.user;
-        },
-        complete: () => {
-          console.log('Fetched user details');
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
-  }
-
-  getUsername(): string {
-    return this.user?.username ?? "No username found.";
-  }
-
-  getEmail(): string {
-    return this.user?.email ?? "No email found.";
   }
 
   isLoggedIn(): boolean {
