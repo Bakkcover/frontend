@@ -7,6 +7,7 @@ import {LibraryComponent} from "./library/library.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {LoggedInGuard} from "./loggedin.guard";
 import {AddBookComponent} from "./add-book/add-book.component";
+import {BookDetailsComponent} from "./library/components/book-details/book-details.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'howitworks', component: HowItWorksComponent },
   { path: 'library', component: LibraryComponent },
+  { path: 'book/:id', component: BookDetailsComponent },
   { path: 'contactus', component: ContactUsComponent },
   {
     path: 'myaccount',
