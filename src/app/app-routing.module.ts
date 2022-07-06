@@ -6,6 +6,7 @@ import {HowItWorksComponent} from "./how-it-works/how-it-works.component";
 import {LibraryComponent} from "./library/library.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {LoggedInGuard} from "./loggedin.guard";
+import {AddBookComponent} from "./add-book/add-book.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'myaccount',
     component: MyAccountComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: 'addbook',
+    component: AddBookComponent,
     canActivate: [LoggedInGuard],
   }
 ];

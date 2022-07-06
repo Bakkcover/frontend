@@ -14,6 +14,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {LibraryModule} from "./library/library.module";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth/interceptors/auth.interceptor";
+import {AddBookModule} from "./add-book/add-book.module";
+import {AddBookComponent} from "./add-book/add-book.component";
 
 @NgModule({
   declarations: [
@@ -22,14 +24,16 @@ import {AuthInterceptor} from "./shared/auth/interceptors/auth.interceptor";
     NavbarComponent,
     HowItWorksComponent,
     LibraryComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     AuthModule,
-    LibraryModule
+    LibraryModule,
+    AddBookModule
   ],
   providers: [LoggedInGuard, {
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true

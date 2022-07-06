@@ -5,3 +5,11 @@ export interface User {
   firstName?:string,
   lastName?:string
 }
+
+export const EMPTY_USER:User = {
+  sub: "No sub",
+  username: "No username",
+  email: "No email",
+  firstName: "No first name",
+  lastName: "No last name"
+}

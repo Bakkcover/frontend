@@ -11,7 +11,7 @@ import {User} from "../../models/User";
   providedIn: 'root'
 })
 export class UserDetailsService {
-  private readonly GETLOGGEDINUSERDETAILS_ENDPOINT:string = `${environment.apiUrl}/users/detail`;
+  private readonly GET_LOGGED_IN_USER_DETAILS_ENDPOINT:string = `${environment.apiUrl}/users/detail`;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,7 @@ export class UserDetailsService {
   getLoggedInUserDetails(): Observable<User> {
     let SUCCESS_MESSAGE:string = "Fetched user's details!";
 
-    return this.http.get<GetUserDetailsDto>(this.GETLOGGEDINUSERDETAILS_ENDPOINT)
+    return this.http.get<GetUserDetailsDto>(this.GET_LOGGED_IN_USER_DETAILS_ENDPOINT)
       .pipe(
         map((res) => res.user),
         tap({

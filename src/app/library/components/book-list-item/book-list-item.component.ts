@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Book, EMPTY_BOOK} from "../../../shared/models/Book";
 
 @Component({
   selector: 'app-book-list-item',
@@ -7,9 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BookListItemComponent implements OnInit {
   @Input()
-  public title:string = '';
-  @Input()
-  public author:string = '';
+  public book:Book = EMPTY_BOOK;
 
   constructor() { }
 

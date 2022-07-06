@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LibraryService} from "../../services/library/library.service";
-import {Book} from "../../models/Book";
+import {LibraryService} from "../../services/library.service";
+import {Book} from "../../../shared/models/Book";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-book-list',
@@ -8,7 +9,7 @@ import {Book} from "../../models/Book";
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  public books:Book[] = [];
+  public books:Observable<Book[]> = new Observable<Book[]>();
 
   constructor(
     private libraryService:LibraryService
