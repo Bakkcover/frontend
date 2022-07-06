@@ -3,8 +3,8 @@
     <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Grab something you like.</h2>
 
     <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <div *ngFor="let book of books" class="relative">
-        <app-book-list-item [title]="book.title" [author]="book.author"></app-book-list-item>
+      <div *ngFor="let book of books | async" class="relative">
+        <app-book-list-item [book]="book"></app-book-list-item>
       </div>
     </div>
   </div>
