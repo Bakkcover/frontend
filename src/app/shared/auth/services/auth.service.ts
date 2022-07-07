@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import * as moment from 'moment';
 import {Observable, shareReplay, tap} from "rxjs";
 
-import {environment} from "../../../../environments/environment";
+import {environment} from "src/environments/environment";
 import {LoggingService} from "../../services/logging/logging.service";
 import {LoggingSeverity} from "../../services/logging/loggingSeverity";
 
