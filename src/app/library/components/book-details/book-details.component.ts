@@ -21,6 +21,15 @@ export class BookDetailsComponent implements OnInit {
     this.book = this.getBook();
   }
 
+  public adoptBook(): void {
+    this.book.pipe(
+      switchMap(bookDetails => this.libraryService.adoptBook(bookDetails.id))
+    ).subscribe({
+      // reload the page when book has been successfully adopted
+      complete: () => location.reload()
+    });
+  }
+
   private getBook(): Observable<Book> {
     return this.getIdFromRoute()
       .pipe(

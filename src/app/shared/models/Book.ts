@@ -6,7 +6,8 @@ export interface Book {
   author:string,
   publisher:string,
   details:string,
-  listedByUser: User
+  listedByUser: User,
+  adoptedByUser: User
 }
 
 export const EMPTY_BOOK:Book = {
@@ -15,5 +16,6 @@ export const EMPTY_BOOK:Book = {
   author: "-",
   publisher: "-",
   details: "-",
-  listedByUser: EMPTY_USER
+  listedByUser: EMPTY_USER,
+  adoptedByUser: EMPTY_USER
 }
