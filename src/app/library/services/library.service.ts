@@ -15,6 +15,7 @@ import {LoggingSeverity} from "../../shared/services/logging/loggingSeverity";
 export class LibraryService {
   private readonly GET_ALL_BOOKS_ENDPOINT:string = `${environment.apiUrl}/books/all`;
   private readonly GET_BOOK_ENDPOINT:string = `${environment.apiUrl}/books/book`;
+  private readonly ADOPT_BOOK_ENDPOINT:string = `${environment.apiUrl}/books/adopt`;
 
   private readonly HTTP_OPTIONS = {
     headers: new HttpHeaders({
@@ -66,6 +67,22 @@ export class LibraryService {
           error: () => this.loggingService.log(ERROR_MESSAGE, LoggingSeverity.ERROR)
         }),
         map(res => { return res.book; }),
+        shareReplay()
+      );
+  }
+
+  public adoptBook(id:number): Observable<any> {
+    let SUCCESS_MESSAGE:string = `Successfully adopted book`;
+    let ERROR_MESSAGE:string = `Failed to adopt book`;
+
+    let params:any = { id };
+
+    return this.http.get(this.ADOPT_BOOK_ENDPOINT, { params })
+      .pipe(
+        tap({
+          complete: () => this.loggingService.log(SUCCESS_MESSAGE, LoggingSeverity.SUCCESS),
+          error: () => this.loggingService.log(ERROR_MESSAGE, LoggingSeverity.ERROR)
+        }),
         shareReplay()
       );
   }
