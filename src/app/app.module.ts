@@ -12,7 +12,7 @@ import { LibraryComponent } from './library/library.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {LibraryModule} from "./library/library.module";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth/interceptors/auth.interceptor";
 import {AddBookModule} from "./add-book/add-book.module";
 import {AddBookComponent} from "./add-book/add-book.component";
@@ -33,11 +33,18 @@ import {AddBookComponent} from "./add-book/add-book.component";
     ReactiveFormsModule,
     AuthModule,
     LibraryModule,
-    AddBookModule
+    AddBookModule,
+    HttpClientModule
   ],
-  providers: [LoggedInGuard, {
-    provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
-  }],
+  providers: [
+    LoggedInGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    HttpClientModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
