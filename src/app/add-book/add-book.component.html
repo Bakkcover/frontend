@@ -70,6 +70,19 @@
         </div>
       </ng-container>
 
+      <ng-container *ngIf="searchResults | async">
+        <div>
+          <h1>Found these on Google Books: (Work-in-Progress)</h1>
+          <ul class="w-2/3 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li *ngFor="let book of searchResults | async"
+              class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <img src={{book.thumbnail}}>
+              {{ book.title }}
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+
     </div>
   </div>
 </form>

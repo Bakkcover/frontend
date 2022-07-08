@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'addbook',
     component: AddBookComponent,
-    canActivate: [LoggedInGuard],
+    // canActivate: [LoggedInGuard],
   }
 ];
 
