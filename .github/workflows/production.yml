@@ -32,10 +32,10 @@ jobs:
       run: npm install
       
     - name: Run tests
-      run: ng test
+      run: npm test
       
     - name: Build
-      run: ng build
+      run: npm build
       
     - name: Deploy
       if: success()
