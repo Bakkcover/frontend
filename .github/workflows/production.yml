@@ -5,7 +5,7 @@ name: Deploy to S3 Bucket
 on:
   push:
     branches:
-    # Only run this workflow when production branch is updated
+    # only run this workflow when a PR is merged into or a commit is made directly to the production branch
     - production
     
 jobs:
